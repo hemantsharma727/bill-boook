@@ -57,14 +57,16 @@ const Invoice = props => {
   const [states, setStates] = useState([{ stateCode: '-1', name: 'Please select state...' }]);
   const [total, setTotal] = useState();
 
-  const dateFormat = 'MMM dd, yyyy';
+  // const dateFormat = 'MMM dd, yyyy';
+  const dateFormat = 'yyyy-MM-dd';
+
   const invoiceDate = invoice.invoiceDate !== '' ? new Date(invoice.invoiceDate) : new Date();
 
   useEffect(() => {
     if (match && match.params && match.params.id) {
-      const URL1 = 'http://localhost:3000/firm';
-      const URL2 = 'http://localhost:3000/states';
-      const URL3 = 'http://localhost:3000/invoiceDetails123';
+      const URL1 = 'http://localhost:7890/firm/1';
+      const URL2 = 'http://localhost:7890/states';
+      const URL3 = `http://localhost:7890/invoiceDetails/${match.params.id}`;
 
       const promise1 = axios.get(URL1);
       const promise2 = axios.get(URL2);
@@ -76,8 +78,8 @@ const Invoice = props => {
         setInvoice({ ...invoice, ...values[2].data });
       });
     } else {
-      const URL1 = 'http://localhost:3000/firm';
-      const URL2 = 'http://localhost:3000/states';
+      const URL1 = 'http://localhost:7890/firm/1';
+      const URL2 = 'http://localhost:7890/states';
 
       const promise1 = axios.get(URL1);
       const promise2 = axios.get(URL2);
@@ -85,7 +87,6 @@ const Invoice = props => {
       Promise.all([promise1, promise2]).then(function (values) {
         setFirmDetails({ ...values[0].data });
         setStates([...states, ...values[1].data]);
-        setInvoice({ ...invoice, ...initialItemData });
       });
     }
   }, []);
@@ -187,6 +188,8 @@ const Invoice = props => {
 
   const saveInvoiceDetails = () => {
     invoice.totalAmount = total;
+    invoice.invoiceNumber = firmDetails.invoiceNumber
+    invoice.stateCode = firmDetails.stateCode
     invoice.transactions = [
       {
         amountPaid: invoice.paidAmount,
@@ -195,27 +198,27 @@ const Invoice = props => {
     ];
     const invoiceDetails = { ...invoice };
     const keysNotreq = [
-      'tradeName',
-      'legalName',
-      'businessDesc',
-      'businessAddress',
-      'contactNo',
-      'email',
-      'termAndConditions',
-      'notes',
+      // 'tradeName',
+      // 'legalName',
+      // 'businessDesc',
+      // 'businessAddress',
+      // 'contactNo',
+      // 'email',
+      // 'termAndConditions',
+      // 'notes',
       'paidAmount'
     ];
     keysNotreq.forEach(key => {
       delete invoiceDetails[key];
-    });
+    }); 
     axios
-      .post('/saveinvoiceDetails', invoiceDetails)
+      .post('http://localhost:7890/invoiceDetails/save', invoiceDetails)
       .then(function (response) {
         console.log(response);
+        setInvoice({ ...initialInvoiceData });
       })
       .catch(function (error) {
         console.log(error);
-        setInvoice({ ...initialInvoiceData, ...firmDetails });
       });
   };
 
