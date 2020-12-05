@@ -1,0 +1,153 @@
+body {
+  background: rgb(50, 45, 125);
+  background: linear-gradient(214deg, rgba(50, 45, 125, 1) 0%, rgba(215, 180, 208, 1) 22%, rgba(0, 212, 255, 1) 67%);
+}
+.app {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.divider {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #eeeeee -moz-use-text-color #ffffff;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 13px 30px;
+}
+
+.input,
+.span,
+.select {
+  display: inline-block;
+  width: 100%;
+  padding: 4px 12px 4px 0;
+  margin-bottom: 1px;
+  border: 1px dotted transparent;
+  transition: background 0.1s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.input,
+.select {
+  &:hover,
+  &:focus {
+    background: $color-yellow;
+  }
+
+  &:focus {
+    border-color: $color-cyan;
+  }
+
+  &.white {
+    &:hover,
+    &:focus {
+      color: inherit;
+    }
+  }
+}
+
+.nav {
+  a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #fff;
+    padding-right: 25px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    &.active {
+      color: $primary-color;
+    }
+  }
+}
+
+.invoice-wrapper {
+  position: relative;
+  background: #fff;
+  // padding: 40px 35px;
+  box-shadow: 0 0 17px 0 rgba(16, 40, 73, 0.09);
+}
+
+.header {
+  background: $primary-color;
+  position: relative;
+  padding: 30px;
+  & input,
+  span {
+    color: $white-color;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding-bottom: 5%;
+    background: inherit;
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.no-r-padding {
+  padding-right: 0;
+}
+
+.b-b-primary {
+  border-bottom: 5px solid $primary-color;
+}
+
+.brand-name h1 {
+  color: #fff;
+}
+
+.save-invoice {
+  padding: 10px 15px;
+  margin: 10px 0;
+  font-size: 20px;
+  border-radius: 5px;
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  box-shadow: 3px 3px;
+  float: right;
+  cursor: pointer;
+}
+
+.invoice-border-bottom span {
+  padding: 0;
+  margin-bottom: -3px;
+  border: 5px solid $primary-color;
+}
+
+.download-pdf {
+  position: fixed;
+  top: 100px;
+  margin-left: -60px;
+  width: 40px;
+  height: 40px;
+  background: url('../images/download.svg');
+  transition: opacity 0.2s ease-in-out;
+
+  &.loading {
+    opacity: 0.3;
+  }
+
+  a {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

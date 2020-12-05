@@ -1,0 +1,86 @@
+{
+  "firm": {
+    "gstn": "GSTN123456",
+    "tradeName": "Amit Gupta & Associates",
+    "legalName": "Amit Gupta",
+    "businessDesc": "CONSULTANCY SERVICES ",
+    "businessAddress": "3, SF AS, SECTOR 15, BAHADURGARH ",
+    "contactNo": 9876543210,
+    "email": "CA_KUMARMANOJ@YAHOO.COM",
+    "termAndConditions": null,
+    "notes": null,
+    "invoiceNumber": 1,
+    "stateCode": "6"
+  },
+  "states": [
+    {
+      "name": "Haryana",
+      "stateCode": "6"
+    },
+    {
+      "name": "Punjab",
+      "stateCode": "7"
+    },
+    {
+      "name": "Bihar",
+      "stateCode": "8"
+    },
+    {
+      "name": "UP",
+      "stateCode": "9"
+    }
+  ],
+  "invoiceDetails": [
+    {
+      "invoiceNumber": 321,
+      "buyerName": "Hemant"
+    },
+    {
+      "invoiceNumber": 211,
+      "buyerName": "Nishant"
+    }
+  ],
+  "invoiceDetails123": {
+    "invoiceNumber": 1,
+    "gstn": "GSTN123456",
+    "buyerGstn": "",
+    "stateCode": "6",
+    "buyerName": "hemanr sharma",
+    "buyerAddress": "vill mawai",
+    "buyerDeliveryAddress": "vill mawai",
+    "invoiceDate": "",
+    "placeOfSupply": "-1",
+    "transport": "OWN",
+    "vehicleNo": "",
+    "grNo": "",
+    "items": [
+      {
+        "itemName": "Fan",
+        "hsn": "123",
+        "quantity": "123",
+        "itemRate": "242",
+        "igst": "5",
+        "cgst": "",
+        "sgst": "",
+        "totalAmount": "31254.30"
+      },
+      {
+        "itemName": "ulb",
+        "hsn": "",
+        "quantity": "234",
+        "itemRate": "242",
+        "igst": "",
+        "cgst": "6",
+        "sgst": "",
+        "totalAmount": "60025.68"
+      }
+    ],
+    "totalAmount": 91279.98,
+    "transactions": [
+      {
+        "amountPaid": "100",
+        "paymentMode": "Cash"
+      }
+    ]
+  }
+}
