@@ -62,5 +62,5 @@ export const initialInvoiceData = {
   vehicleNo: '',
   grNo: '',
   items: [{ ...initialItem }],
-  paidAmount: 0.0
+  amountPaid: 0.0
 };

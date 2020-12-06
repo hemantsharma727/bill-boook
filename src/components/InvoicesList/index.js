@@ -64,9 +64,9 @@ const InvoicesList = () => {
               <View className="p-8-8  w-25" pdfMode={pdfMode}>
                 <Text>{invoice.buyerGstn}</Text>
               </View>
-              <View className="p-8-8  w-25" pdfMode={pdfMode}>
+              <View className="p-8-8  w-25 flex" pdfMode={pdfMode}>
                 <Link to={`/sales/invoice/${invoice.invoiceNumber}`}>Edit Invoice</Link>
-                <button className="download-pdf-button"><Download data={invoice} /></button>
+                <Download data={invoice} />
               </View>
             </View>
           );

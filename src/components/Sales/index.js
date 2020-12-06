@@ -51,6 +51,7 @@ const Invoice = props => {
     termLabel
   } = invoiceLabels;
 
+  const [enableDownload, setEnableDownload] = useState(false);
   const [initialItemData, setInitialItemData] = useState(initialItem);
   const [firmDetails, setFirmDetails] = useState({});
   const [invoice, setInvoice] = useState(data ? { ...data } : { ...initialInvoiceData });
@@ -192,7 +193,7 @@ const Invoice = props => {
     invoice.stateCode = firmDetails.stateCode
     invoice.transactions = [
       {
-        amountPaid: invoice.paidAmount,
+        amountPaid: invoice.amountPaid,
         paymentMode: 'Cash'
       }
     ];
@@ -206,7 +207,7 @@ const Invoice = props => {
       // 'email',
       // 'termAndConditions',
       // 'notes',
-      'paidAmount'
+      'amountPaid'
     ];
     keysNotreq.forEach(key => {
       delete invoiceDetails[key];
@@ -226,7 +227,7 @@ const Invoice = props => {
     <>
       <Document pdfMode={pdfMode} class="w-800">
         <Page className="invoice-wrapper" pdfMode={pdfMode}>
-          {!pdfMode && <Download data={invoice} />}
+          {/* !pdfMode && <Download data={invoice} /> */}
 
           {/** Header */}
           <View className="flex header" pdfMode={pdfMode}>
@@ -605,8 +606,8 @@ const Invoice = props => {
                 <View className="w-50 p-5" pdfMode={pdfMode}>
                   <Input
                     className="right text-color"
-                    value={invoice.paidAmount}
-                    onChange={value => handleChange('paidAmount', value)}
+                    value={invoice.amountPaid}
+                    onChange={value => handleChange('amountPaid', value)}
                     pdfMode={pdfMode}
                   />
                 </View>
@@ -622,8 +623,8 @@ const Invoice = props => {
                     {currency}
                   </Text>
                   <Text className={`right text-primary w-auto ${pdfMode ? 'fs-10' : 'fs-20'}`} pdfMode={pdfMode}>
-                    {(typeof total !== 'undefined' && typeof invoice.paidAmount !== 'undefined'
-                      ? total - invoice.paidAmount
+                    {(typeof total !== 'undefined' && typeof invoice.amountPaid !== 'undefined'
+                      ? total - invoice.amountPaid
                       : 0
                     ).toFixed(2)}
                   </Text>
@@ -669,9 +670,15 @@ const Invoice = props => {
         </Page>
       </Document>
       {!pdfMode && (
-        <button className="save-invoice" onClick={saveInvoiceDetails}>
-          Save
-        </button>
+        <>
+          <button className="save-invoice" onClick={saveInvoiceDetails}>
+            Save
+          </button>
+          <button className="download-invoice" onClick={()=> setEnableDownload(true) }>
+            Enable Download Icon
+          </button>
+          {enableDownload && <Download data={invoice} />}
+        </>
       )}
     </>
   );
